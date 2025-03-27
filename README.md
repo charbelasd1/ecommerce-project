@@ -1,16 +1,14 @@
-# <img src="./src/assets/hug.png" alt="Logo" width="50" style="vertical-align: middle; margin-bottom:10px"/> Aïah
+# Charbel-Ecomm
 
-An e-commerce website built with **Angular Framework**, **Fake Store API**, and local data. While the Fake Store API provides only 4 categories, I added a fifth one, "skincare," in honor of my friend Ayah, who's always dreamed of having her own e-pharmacy, hence the name of the project **Aïah** 😊
+An e-commerce website built with **Angular Framework**, **Fake Store API**, and local data.
 
-<div style="text-align: center;">
-  <img src="./src/assets/aiah 2.png" alt="Home Page" width="800px" style="display:block; margin: 0 auto;"/>
-</div>
+
 
 ## Technologies Used
 
 - This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 - **Fake Stroe API**: https://fakestoreapi.com/docs
-- **Authentication API**: http://173.249.40.235:5005/swagger/index.html#/
+- **Firebase For Auth**:
 
 ## User Features
 
