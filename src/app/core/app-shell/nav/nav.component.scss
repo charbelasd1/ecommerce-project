@@ -1,21 +1,30 @@
 nav {
   height: auto;
   background-color: white;
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
-
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5rem 3%;
   position: relative;
 }
-.hidden-links-menu {
-  display: none;
-  a {
-    text-decoration: none;
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .nav-logo {
+    height: 35px;
+    width: auto;
   }
 }
+
 .links {
-  list-style-type: none;
+  flex: 1;
   display: flex;
   gap: 1rem;
   padding: 0;
@@ -36,28 +45,26 @@ nav {
 }
 .logo {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  img {
-    max-height: 60px;
-    object-fit: contain;
+  align-items: center;
+  cursor: pointer;
+
+  .nav-logo {
+    height: 50px;
+    width: auto;
   }
+
   .logo-name {
-    display: flex;
-    flex-direction: column;
-    font-size: var(--font-normal);
-    font-weight: 600;
-    div {
-      height: 20px;
-    }
-  }
-  align-self: center;
-  &:hover {
-    cursor: pointer;
+    display: none; /* Hide the text */
   }
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+}
 .icons {
   justify-self: flex-end;
 
