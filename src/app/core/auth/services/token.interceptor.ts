@@ -1,7 +1,5 @@
 import { HttpClient, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
-import { UserAuthService } from './user-login.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { logout } from '../state/auth.actions';
@@ -10,29 +8,32 @@ import { AuthState } from '../state/auth.reducers';
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const store = inject(Store<AuthState>);
-  const user = JSON.parse(localStorage.getItem('user')!);
-  if (!user) {
-    // alert(`there is no user in local storage`);
-    store.dispatch(logout());
+  
+  // Skip adding token for Firebase auth endpoints
+  if (req.url.includes('firebaseauth') || req.url.includes('identitytoolkit')) {
     return next(req);
   }
-
-  const token = user.token;
-
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    const isExpired =
-      decodedToken && decodedToken.exp
-        ? decodedToken.exp * 1000 < Date.now()
-        : false;
-
-    if (isExpired) {
-      alert(`Session expired! Please login again.`);
-      store.dispatch(logout());
-    } else {
+  
+  try {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    
+    if (!user || !user.token) {
+      // Only dispatch logout for non-auth URLs that require authentication
+      if (!req.url.includes('/login') && !req.url.includes('/signup')) {
+        store.dispatch(logout());
+      }
+      return next(req);
     }
-  } else {
+
+    // Add the token to the request
+    const authReq = req.clone({
+      setHeaders: { Authorization: `Bearer ${user.token}` }
+    });
+    
+    return next(authReq);
+  } catch (error) {
+    console.error('Error in token interceptor:', error);
     router.navigateByUrl('/login');
+    return next(req);
   }
-  return next(req);
 };

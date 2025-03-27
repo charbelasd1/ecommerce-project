@@ -5,7 +5,7 @@ import * as AuthActions from './auth.actions';
 export interface AuthState {
   email: string | undefined;
   token: string | undefined;
-  userId: number | undefined;
+  userId: string | undefined;
 }
 
 export const initialAuthState: AuthState = {

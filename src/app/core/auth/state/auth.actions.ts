@@ -5,7 +5,7 @@ export const login = createAction(
   props<{
     email: string;
     token: string;
-    userId: number;
+    userId: string;
   }>()
 );
 
@@ -13,5 +13,5 @@ export const logout = createAction('[Nav Component] Logout');
 
 export const refresh = createAction(
   '[Application] Refresh',
-  props<{ email: string; token: string; userId: number }>()
+  props<{ email: string; token: string; userId: string }>()
 );

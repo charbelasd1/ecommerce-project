@@ -1,4 +1,5 @@
-export interface IUser{
+export interface IUser {
   email: string;
   token: string;
+  userId: string;
 }

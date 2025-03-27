@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from '../env/env.dev';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListingModule } from './features/product-listing/product-listing.module';
@@ -9,45 +11,31 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffect } from './core/auth/state/auth.effects';
 import { AuthModule } from './core/auth/auth.module';
 import { HomeModule } from './features/home-page/home.module';
-import { NavComponent } from './core/app-shell/nav/nav.component';
-import { FooterComponent } from './core/app-shell/footer/footer.component';
-import { ShellComponent } from './core/app-shell/shell/shell.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatDividerModule } from '@angular/material/divider';
-import { RouterModule } from '@angular/router';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-
-import { registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
-import { provideHttpClient } from '@angular/common/http';
-
-registerLocaleData(en);
+import { AppShellModule } from './core/app-shell/app-shell.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, FooterComponent, ShellComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    HttpClientModule,
     AppRoutingModule,
     ProductListingModule,
     AuthModule,
-    StoreModule.forRoot(authReducer),
+    StoreModule.forRoot({ auth: authReducer }),
     EffectsModule.forRoot([AuthEffect]),
     HomeModule,
-    MatDividerModule,
-    RouterModule,
-    MatBadgeModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    FormsModule,
+    AppShellModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
-
-  bootstrap: [AppComponent],
-
-  providers: [provideAnimationsAsync(), provideHttpClient()],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

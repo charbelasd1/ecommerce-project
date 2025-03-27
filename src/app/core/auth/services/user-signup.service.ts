@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../env/env.dev';
-import { HttpClient } from '@angular/common/http';
-import { iSignUpRequest, iSignUpResponse } from '../models/auth.model';
 import { Observable } from 'rxjs';
+import { iSignUpRequest, iSignUpResponse } from '../models/auth.model';
+import { UserAuthService } from './user-login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
+  constructor(private authService: UserAuthService) { }
 
- 
-  constructor(private http: HttpClient) { }
-
-  signup(req: iSignUpRequest): Observable<iSignUpResponse>{
-    const signupURL = `${environment.authURL}User/SignUp()`;
-    return this.http.post<iSignUpResponse>(signupURL, req)
+  signup(req: iSignUpRequest): Observable<iSignUpResponse> {
+    return this.authService.signup(req);
   }
-
-
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../../services/user-signup.service';
-
-import { iSignUpResponse } from '../../models/auth.model';
+import { Router } from '@angular/router';
+import { iSignUpRequest, iSignUpResponse } from '../../models/auth.model';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
     /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   constructor(
     private fb: FormBuilder,
-    private auth: SignupService
+    private auth: SignupService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +35,25 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.valid) {
       console.log('Form submitted', this.signupForm.value);
 
+      const signupData: iSignUpRequest = {
+        firstName: this.signupForm.value.firstName,
+        lastName: this.signupForm.value.lastName,
+        email: this.signupForm.value.email,
+        password: this.signupForm.value.password
+      };
+
       this.auth
-        .signup(this.signupForm.value)
-        .subscribe((res: iSignUpResponse) => {
-          console.log('Sign Up Response: ', res);
+        .signup(signupData)
+        .subscribe({
+          next: (res: iSignUpResponse) => {
+            console.log('Sign Up Response: ', res);
+            // Navigate to login page after successful signup
+            this.router.navigate(['/login']);
+          },
+          error: (error) => {
+            console.error('Signup error:', error);
+            // Handle signup errors (could add UI feedback here)
+          }
         });
     } else {
       console.log('form is invalid');

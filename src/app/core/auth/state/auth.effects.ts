@@ -9,22 +9,35 @@ import * as AuthActions from './auth.actions';
 import { Router } from '@angular/router';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { currentUser } from './auth.selector';
+
 @Injectable()
 export class AuthEffect {
   constructor(
     private actions$: Actions,
     private router: Router,
     private cartItems: CartService,
-    private store: Store
-  ) {}
-  currentUser!: number;
+    private store: Store,
+    private authService: UserAuthService
+  ) {
+    // In the constructor or wherever you're checking for existing user
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        user.getIdToken().then(token => {
+          this.store.dispatch(AuthActions.refresh({
+            email: user.email || '',
+            token: token,
+            userId: user.uid
+          }));
+        });
+      }
+    });
+  }
+
   login$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.login),
         tap((action) => {
-          // console.log('Effect triggered:', action);
-
           localStorage.setItem(
             'user',
             JSON.stringify({
@@ -33,6 +46,7 @@ export class AuthEffect {
               userId: action.userId,
             })
           );
+          this.router.navigateByUrl('/');
         })
       ),
     { dispatch: false }
@@ -42,8 +56,8 @@ export class AuthEffect {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
-
-        tap((action) => {
+        switchMap(() => this.authService.logout()),
+        tap(() => {
           localStorage.removeItem('user');
           this.router.navigateByUrl('/login');
         })

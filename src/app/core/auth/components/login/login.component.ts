@@ -33,28 +33,32 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const val: ILoginRequest = this.loginForm.value;
-    console.log(val);
+    const val: ILoginRequest = {
+      email: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
+    
+    console.log('Login attempt with:', val.email);
+    
     this.auth
       .login(val)
       .pipe(
-        tap((user) => {
+        tap((response) => {
           this.store.dispatch(
             login({
-              email: val.username,
-              token: user.Login.AccessToken,
-              userId: this.generateID.stringToHex(val.username),
+              email: response.user.email,
+              token: response.token,
+              userId: response.user.uid
             })
           );
           this.router.navigate(['']);
-
           this.isLoginFail = false;
         }),
         catchError((err) => {
           console.error('Login error:', err);
           alert('Login Failed');
           this.isLoginFail = true;
-          return throwError(err);
+          return throwError(() => err);
         })
       )
       .subscribe({

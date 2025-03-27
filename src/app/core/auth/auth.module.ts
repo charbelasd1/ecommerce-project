@@ -17,6 +17,9 @@ import {
 } from '@angular/common/http';
 import { AuthinterceptorsService } from './services/authinterceptors.service';
 import { tokenInterceptor } from './services/token.interceptor';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from '../../../env/env.dev';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
@@ -26,6 +29,8 @@ import { tokenInterceptor } from './services/token.interceptor';
     ReactiveFormsModule,
     StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([AuthEffect]),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
   providers: [
     UserAuthService,
