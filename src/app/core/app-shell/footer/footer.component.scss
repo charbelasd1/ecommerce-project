@@ -1,27 +1,25 @@
 .footer {
   background-color: black;
 }
+
 .main-content {
   background-color: black;
-
   margin-top: 3%;
-  padding: 1% 17% 1%;
+  padding: 1% 10% 1%;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 2.2rem;
-  align-items: flex-start;
-
-  .logo {
-    display: flex;
-    flex-direction: column;
-    font-size: var(--font-large);
-    color: white;
-    margin-top: 3rem;
-  }
-  content {
-    background-color: black;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start; /* Align all items to the top */
+  
+  h5 {
+    margin-top: 0; /* Remove top margin from headings for consistent alignment */
   }
 }
+
+content {
+  background-color: black;
+}
+
 @media (max-width: 800px) {
   .main-content {
     grid-template-columns: 1fr;
@@ -66,5 +64,52 @@ h5 {
   padding-bottom: 0.2rem;
   p {
     margin-top: 2%;
+  }
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  height: 30px;
+  width: auto;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  .email-input {
+    display: flex;
+    
+    input {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-right: none;
+      width: 200px;
+      background-color: #ffffffb8;
+      color: black;
+    }
+    
+    button {
+      background-color: #090909b8;
+      color: rgb(248, 246, 246);
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+  
+  .signup-text {
+    font-size: 0.8rem;
+    color: white; /* Changed for better visibility */
   }
 }
