@@ -1,0 +1,26 @@
+<!--   -->
+<!-- <div class="box"> -->
+
+<div class="img-container" routerLink="/products/details/{{ productData.id }}">
+  @if (productData.id > 20) {
+    <div class="new-tag">NEW</div>
+  }
+  <img src="{{ productData.image }}" alt="{{ productData.title }}" />
+</div>
+<div class="product-info">
+  <h5>{{ productData.title }}</h5>
+  <div class="inbox">
+    <div class="price">
+      @if (saleService.isOnSale(productData.id)) {
+        <p [innerHTML]="productData.price | discount: 20"></p>
+      } @else {
+        <p [innerHTML]="productData.price | currency: 'USD'"></p>
+      }
+    </div>
+
+    <button class="add" mat-button (click)="add()">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </div>
+</div>
+<!-- </div> -->

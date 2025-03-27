@@ -1,0 +1,63 @@
+@import '../../../../../styles/buttons';
+
+.img-container {
+  width: 100%;
+  background-color: white;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  .new-tag {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+
+    font-size: var(--font-small);
+    font-weight: 700;
+  }
+}
+.img-container img {
+  width: 50%;
+
+  padding: 0 5rem;
+  object-fit: contain;
+}
+
+h5 {
+  font-size: var(--font-xx-small);
+  font-weight: 300;
+  margin: 4% 1rem;
+}
+
+.product-info {
+  display: grid;
+
+  grid-row: 1fr 1fr;
+  width: 100%;
+  height: 130px;
+
+  .price {
+    color: black;
+    font-weight: 500;
+  }
+}
+
+.inbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2rem 3% 2rem;
+}
+
+.add {
+  @include button-default(4rem, 2rem);
+  border: none;
+}

@@ -1,0 +1,68 @@
+@import '../../../../../styles/buttons';
+.profile-header {
+  padding: 60px 10% 0;
+}
+.title {
+  margin: 0 1rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.profile-container {
+  padding: 60px 12% 0;
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 3fr;
+}
+@media (max-width: 900px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 0.5fr auto;
+    gap: 2rem;
+  }
+}
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+  align-items: center;
+  mat-divider {
+    align-self: stretch;
+  }
+}
+li {
+  list-style-type: none;
+  margin: 1rem 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: var(--font-normal);
+  &:hover {
+    color: var(--secondary-color);
+  }
+  &:active {
+    color: var(--accent-color);
+  }
+}
+
+li button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    padding-left: 0.5rem;
+  }
+}
+.logout-btn {
+  @include button-default(10rem, 3rem);
+  border: 0;
+}
+
+.vertical-divider {
+  height: 100%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+  margin: 0 4rem;
+  align-self: stretch;
+}

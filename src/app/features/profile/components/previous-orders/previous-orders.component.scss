@@ -1,0 +1,42 @@
+.table-container {
+  padding: 3% 5%;
+}
+table {
+  width: 100%;
+}
+table th {
+  font-weight: 500;
+  font-size: smaller;
+  text-align: left;
+  padding: 5px;
+  padding-left: 20px;
+  color: black;
+  background-color: var(--primary-color);
+}
+
+span {
+  color: var(--accent-color);
+}
+
+td {
+  text-align: left;
+
+  font-size: smaller;
+  a {
+    font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      color: var(--accent-color);
+      font-weight: 300;
+    }
+  }
+}
+
+.content td {
+  padding: 1rem 1rem 0 1.5rem;
+}
+th:first-child {
+  width: 100px;
+}

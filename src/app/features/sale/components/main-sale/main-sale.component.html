@@ -1,0 +1,9 @@
+<div class="sale-header">
+  <h1 class="title">Sale</h1>
+  <mat-divider></mat-divider>
+</div>
+<div class="product-list">
+  @for (item of saleService.saleItems(); track item) {
+    <app-view-card class="product" [productData]="item"></app-view-card>
+  }
+</div>

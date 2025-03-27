@@ -1,0 +1,157 @@
+@import '../../../../../styles/buttons';
+
+.cart-header {
+  padding: 60px 10% 0;
+}
+.title {
+  margin: 0 1rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.cart-page {
+  padding: 3% 12% 0;
+  table {
+    width: 100%;
+  }
+}
+
+.single-product-info {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2vw;
+  position: relative;
+  p {
+    font-size: clamp(0.8rem, 0.8vw, 1rem);
+  }
+}
+@media (max-width: 800px) {
+  .single-product-info {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 600px) {
+  .single-product-info p,
+  .product-quantity button {
+    display: none;
+  }
+}
+.main-table th {
+  text-align: left;
+  padding: 5px;
+  padding-left: 20px;
+  color: black;
+  background-color: var(--primary-color);
+}
+
+td {
+  padding: 10px 5px;
+
+  .quantity-input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+  img {
+    width: 5vw;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.product-quantity {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  .quantity-form-field {
+    width: 5rem;
+    .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+      text-align: center !important;
+    }
+  }
+}
+mat-icon {
+  color: var(--accent-color);
+}
+input[type='number'] {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.subtotal {
+  display: flex;
+  justify-content: flex-end;
+
+  table {
+    border-top: 3px solid var(--accent-color);
+    width: 100%;
+    max-width: 30vw;
+  }
+}
+
+.discount-form-field {
+  width: 80%;
+  input {
+    font-size: var(--font-xx-small);
+    text-align: end;
+  }
+}
+.message {
+  display: block;
+}
+.mdc-text-field {
+  padding: 0 !important;
+}
+td:last-child {
+  text-align: right;
+}
+
+.main-table th:last-child {
+  text-align: right;
+}
+
+th:first-child,
+td:first-child {
+  max-width: 25vw;
+}
+
+.remove-cart {
+  small span {
+    color: var(--accent-color);
+    font-weight: bolder;
+  }
+  button {
+    margin: 0;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 0;
+    mat-icon {
+      color: white;
+    }
+  }
+}
+
+.checkout button {
+  width: 10rem;
+  margin: 0;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 0;
+}

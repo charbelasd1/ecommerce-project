@@ -1,0 +1,22 @@
+<div
+  class="img-container"
+  (click)="sendData()"
+  routerLink="/products/details/{{ productData.id }}"
+>
+  <img src="{{ productData.image }}" alt="{{ productData.title }}" />
+</div>
+<div class="product-info">
+  <h5>{{ productData.title }}</h5>
+  <div class="inbox">
+    <div class="price">
+      @if (isOnSale()) {
+        <p [innerHTML]="productData.price | discount: 20"></p>
+      } @else {
+        <p [innerHTML]="productData.price | currency: 'USD'"></p>
+      }
+    </div>
+    <button class="add" mat-button (click)="add()">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </div>
+</div>

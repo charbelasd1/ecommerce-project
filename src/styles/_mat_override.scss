@@ -1,0 +1,85 @@
+.mat-badge-content {
+  background-color: var(--accent-color) !important;
+  color: #ffffff;
+  top: 10px;
+}
+
+mat-menu {
+  .mat-menu-panel {
+    border-radius: 0;
+  }
+  .mat-mdc-icon-button {
+    border-radius: 0;
+  }
+}
+
+mat-grid-tile .mat-grid-tile-content {
+  display: block;
+}
+
+mat-form-field.mat-mdc-form-field {
+  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue', sans-serif;
+  letter-spacing: 1px;
+  mat-label {
+    font-family: 'Lexend Tera', Roboto, 'Helvetica Neue', sans-serif;
+  }
+}
+mat-option.mat-mdc-option {
+  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue', sans-serif;
+}
+div.mat-mdc-select-panel,
+#mat-select-2-panel {
+  border-radius: 0;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused
+  .mdc-floating-label,
+.mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused
+  .mdc-floating-label--float-above {
+  color: var(--accent-color) !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white !important;
+}
+.mat-mdc-form-field-focus-overlay {
+  background-color: white !important;
+}
+.mdc-text-field--filled {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+.mdc-text-field--filled {
+  border-radius: 0;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom-color: var(--accent-color) !important;
+}
+.mdc-line-ripple::after {
+  border-bottom-color: var(--accent-color);
+}
+.mat-mdc-select {
+  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: var(--font-xx-small);
+}
+.mat-mdc-form-field.mat-focused .mat-mdc-select-arrow {
+  color: var(--accent-color);
+}
+html {
+  --mat-select-trigger-text-font: 'Lexend Tera', Roboto, 'Helvetica Neue',
+    sans-serif;
+  --mat-select-focused-arrow-color: var(--accent-color);
+  --mat-optgroup-label-text-font: 'Lexend Tera', Roboto, 'Helvetica Neue',
+    sans-serif;
+  --mat-option-selected-state-label-text-color: var(--accent-color);
+}
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after,
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-indeterminate::after {
+  color: var(--accent-color) !important;
+}
+.mat-primary {
+  --mat-full-pseudo-checkbox-selected-icon-color: var(--accent-color);
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--accent-color);
+}
+.mat-mdc-menu-panel {
+  border-radius: 0 !important;
+}

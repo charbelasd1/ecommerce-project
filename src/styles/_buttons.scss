@@ -1,0 +1,27 @@
+@mixin button-default($width, $height, $withborder: 0) {
+  width: $width;
+  height: $height;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  box-shadow: 0 0px 8px var(--drop-shadow-color);
+  border-radius: 0;
+  @if $withborder==1 {
+    border: 1px solid var(--border-color);
+  }
+  font-family: 'Lexend Tera';
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  &:hover {
+    background-color: var(--btn-hover-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px var(--drop-shadow-color);
+  }
+  &:active {
+    background-color: var(--primary-color);
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}

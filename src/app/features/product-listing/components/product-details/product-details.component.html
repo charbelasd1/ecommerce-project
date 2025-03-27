@@ -1,0 +1,55 @@
+<div class="header">
+  <p class="title">Products > Details</p>
+</div>
+
+<div class="product-details-container">
+  @if (product) {
+    <div class="img-container">
+      <img [src]="product.image" alt="{{ product.title }}" />
+    </div>
+    <div class="product-info">
+      <h3 class="title">{{ product.title }}</h3>
+      <p class="description">{{ product.description }}</p>
+
+      <div class="rating">
+        @for (number of stars; track number) {
+          <mat-icon>star</mat-icon>
+        }
+        @if (isHalf) {
+          <mat-icon>star_half</mat-icon>
+        }
+        @if (remaining && remaining.length > 0) {
+          @for (number of remaining; track number) {
+            <mat-icon>star_border</mat-icon>
+          }
+        }
+      </div>
+      <div class="price">
+        @if (saleService.isOnSale(product.id)) {
+          <p [innerHTML]="product.price | discount: 20"></p>
+        } @else {
+          <p class="og-price">{{ product.price | currency: 'USD' }}</p>
+        }
+      </div>
+
+      <!-- <p class="price">{{ product.price | currency: 'USD' }}</p> -->
+      <button class="add-btn" (click)="add()">Add to Cart</button>
+    </div>
+  }
+</div>
+<div class="divider">
+  <mat-divider></mat-divider>
+</div>
+
+<div class="similar-products">
+  <h3>Find similar <span>products.</span></h3>
+  <div class="similar-products-list">
+    @for (product of similarProducts$ | async; track product) {
+      <app-view-card
+        (newId)="displayNewItem($event)"
+        class="product"
+        [productData]="this.product"
+      ></app-view-card>
+    }
+  </div>
+</div>

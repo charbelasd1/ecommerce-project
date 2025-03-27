@@ -1,0 +1,5 @@
+<div class="product-list">
+  @for (item of newItems; track item) {
+    <app-view-card class="product" [productData]="item"></app-view-card>
+  }
+</div>

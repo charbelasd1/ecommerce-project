@@ -1,0 +1,101 @@
+<nav>
+  <div class="hidden-links-menu">
+    <button mat-icon-button [matMenuTriggerFor]="linksMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #linksMenu="matMenu">
+      <ng-container>
+        <button aria-label="Home button" mat-menu-item routerLink="">
+          <span>Home</span>
+        </button>
+      </ng-container>
+      <ng-container>
+        <button
+          aria-label="Products button"
+          mat-menu-item
+          routerLink="/products"
+        >
+          <span>Products</span>
+        </button>
+      </ng-container>
+      <ng-container>
+        <button aria-label="Sale button" mat-menu-item routerLink="/sale">
+          <span>Sale</span>
+        </button>
+      </ng-container>
+      <ng-container>
+        <a href="#about-us">
+          <button
+            aria-label="About us button"
+            mat-menu-item
+            routerLink="/login"
+          >
+            <span>About us</span>
+          </button></a
+        >
+      </ng-container>
+    </mat-menu>
+  </div>
+  <div class="links">
+    <a routerLink="" class="active">Home</a>
+    <a routerLink="/products">Products</a>
+    <a routerLink="/sale">Sale</a>
+    <a href="#about-us">About us</a>
+  </div>
+  <div class="logo" routerLink="">
+    <img src="../../../../assets/hug.png" />
+    <div class="logo-name">
+      <div>Cute</div>
+
+      <div>name <3</div>
+    </div>
+  </div>
+  <div class="icons">
+    <button
+      routerLink="/cart"
+      mat-icon-button
+      [matBadge]="(isLoggedIn$ | async) ? cart.countItems() : ''"
+      matBadgeColor="primary"
+      matBadgePosition="above after"
+    >
+      <mat-icon fontSet="material-icons-outlined">shopping_cart</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Profile Icon"
+    >
+      <mat-icon fontSet="material-icons-outlined">account_circle</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <ng-container>
+        @if (isLoggedIn$ | async) {
+          <button
+            mat-menu-item
+            [routerLink]="['/profile', { outlets: { profile: ['info'] } }]"
+          >
+            <mat-icon>perm_identity</mat-icon>
+            <span>Profile</span>
+          </button>
+        }
+      </ng-container>
+      <ng-container>
+        @if (isLoggedIn$ | async) {
+          <button aria-label="logout button" mat-menu-item (click)="onLogout()">
+            <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
+          </button>
+        }
+      </ng-container>
+      <ng-container>
+        @if (isLoggedOut$ | async) {
+          <button aria-label="login button" mat-menu-item routerLink="/login">
+            <span>Login</span>
+          </button>
+        }
+      </ng-container>
+    </mat-menu>
+  </div>
+</nav>
+<mat-divider></mat-divider>

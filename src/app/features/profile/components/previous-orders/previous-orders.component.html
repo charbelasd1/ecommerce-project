@@ -1,0 +1,38 @@
+<h2>Your previous <span>orders</span></h2>
+<!-- @if (isLoggedIn$ | async) { -->
+<div class="table-container">
+  <table>
+    <tr>
+      <th>Order #</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Products #</th>
+    </tr>
+
+    @for (item of previousItems; track item) {
+      <tr class="content">
+        <td>
+          <a (click)="onSelectOrder(item.orderId)">{{ item.orderId }} </a>
+        </td>
+
+        <td>{{ item.order.date | date }}</td>
+        <td>{{ item.totalPrice | currency: 'USD' }}</td>
+        <td>{{ item.order.items.length }}</td>
+      </tr>
+      <tr>
+        <td><mat-divider></mat-divider></td>
+        <td><mat-divider></mat-divider></td>
+        <td><mat-divider></mat-divider></td>
+        <td><mat-divider></mat-divider></td>
+      </tr>
+    }
+  </table>
+  @if (selectedOrder) {
+    <app-previous-order-details
+      [orderId]="selectedOrder"
+      [userCart]="previousItems"
+      [userId]="currentUser"
+    ></app-previous-order-details>
+  }
+</div>
+<!-- } -->

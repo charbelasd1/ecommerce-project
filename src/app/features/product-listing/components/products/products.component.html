@@ -1,0 +1,67 @@
+<div class="shop-header">
+  <h1 class="title">Shop</h1>
+
+  <div class="products-action">
+    <div class="filter-sort">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <mat-select (selectionChange)="onCategoryChange($event.value)">
+          @for (item of categories; track item) {
+            <mat-option [value]="item"> {{ item | initialUpper }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Sort</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)">
+          @for (item of sortOptions; track item) {
+            <mat-option [value]="item"> {{ item }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="search-form-field">
+      @if (!searchValue) {
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Search"
+          (click)="onSearch()"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+      }
+      <input
+        matInput
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="searchValue"
+        (input)="onSearch()"
+        (keyup.enter)="onSearch()"
+      />
+      @if (searchValue) {
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="onClear()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="product-list">
+  <app-product-card
+    class="product"
+    *ngFor="let product of productList"
+    [productData]="product"
+  >
+  </app-product-card>
+
+  <!-- } -->
+</div>

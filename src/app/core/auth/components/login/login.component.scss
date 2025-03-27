@@ -1,0 +1,59 @@
+@import '../../../../../styles/buttons';
+
+:host {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  width: 50vw;
+  margin: 0 5rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 5vh 0;
+  h1 {
+    margin: 0;
+  }
+  p {
+    font-size: var(--font-x-small) !important;
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bolder;
+    }
+  }
+}
+.form-control {
+  margin-bottom: 15px;
+}
+.form-control label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.form-control input {
+  display: block;
+  width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 0;
+  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue', sans-serif;
+}
+.form-control button {
+  @include button-default(100%, 2rem);
+  border: none;
+}
+.message-container {
+  width: 300px;
+}
+.error-message {
+  color: var(--accent-color);
+  font-size: var(--font-xx-small);
+  max-width: 300px;
+}

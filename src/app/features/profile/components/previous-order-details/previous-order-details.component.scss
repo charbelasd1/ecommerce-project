@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+  margin-top: 5rem;
+}
+table th {
+  font-weight: 500;
+  font-size: smaller;
+  text-align: left;
+  padding: 5px;
+  padding-left: 20px;
+  color: black;
+  background-color: var(--background-color);
+}
+
+span {
+  color: var(--accent-color);
+}
+
+td {
+  text-align: left;
+  font-weight: 300;
+  font-size: smaller;
+  img {
+    width: 5vw;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.content td {
+  padding: 1rem 1rem 0 1.5rem;
+}
+th:first-child {
+  width: 100px;
+}
+
+.footer {
+  background-color: var(--primary-color);
+  font-weight: 500;
+}

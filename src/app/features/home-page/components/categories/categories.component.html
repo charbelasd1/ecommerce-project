@@ -1,0 +1,17 @@
+<mat-grid-list cols="4" rowHeight="100px" gutterSize="1rem">
+  @for (tile of tiles; track tile) {
+    <mat-grid-tile
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [ngStyle]="{
+        'background-image': 'url(' + tile.image + ')',
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover',
+      }"
+    >
+      <div class="title">
+        <a (click)="onNavigateCategory()">{{ tile.text }}</a>
+      </div>
+    </mat-grid-tile>
+  }
+</mat-grid-list>

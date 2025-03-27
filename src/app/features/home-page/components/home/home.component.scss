@@ -1,0 +1,72 @@
+@import '../../../../../styles/buttons';
+section {
+  padding: 5% 12% 0;
+}
+.home {
+  padding: 80px 12% 10px;
+  height: auto;
+  // width: auto;
+
+  background-image: url(../../../../../assets/home-page-coverr.png);
+  background-color: #bde3f8;
+  background-size: cover;
+
+  // background-repeat: no-repeat;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+span {
+  color: var(--accent-color);
+}
+
+.home-text {
+  max-height: 100%;
+  h3 {
+    color: var(--accent-color);
+    font-size: var(--font-large);
+    margin: 0;
+    span {
+      color: black;
+      background-color: var(--primary-color);
+      font-size: var(--font-xxx-large);
+      padding: 0 1rem;
+    }
+  }
+
+  h1 {
+    font-size: var(--font-x-large);
+    margin: 0;
+    margin-top: 0.5rem;
+  }
+  button {
+    border-style: none;
+    @include button-default(15rem, 2.5rem);
+    font-size: larger;
+    font-weight: bolder;
+    padding: 0 1.5rem;
+    margin: 2rem 0;
+  }
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 5%;
+  font-size: var(--font-large);
+}
+
+.about-container {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  text-align: justify;
+}
+
+@media (max-width: 760px) {
+  .about-container {
+    flex-direction: column;
+  }
+}

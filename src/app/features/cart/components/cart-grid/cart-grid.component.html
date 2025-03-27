@@ -1,0 +1,155 @@
+<div class="cart-header">
+  <h1 class="title">My cart</h1>
+  <mat-divider></mat-divider>
+</div>
+<div class="small-container cart-page main-table">
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+
+    @for (item of cartService.cartItems(); track item; let i = $index) {
+      <tr>
+        <td>
+          <div class="single-product-info">
+            <div class="image-container">
+              <img [src]="item.product.image" />
+            </div>
+            <div>
+              <p>{{ item.product.title }}</p>
+
+              @if (saleService.isOnSale(item.product.id)) {
+                <small [innerHTML]="item.product.price | discount: 20"></small>
+              } @else {
+                <small>{{ item.product.price | currency: 'USD' }}</small>
+              }
+
+              <div class="product-delete">
+                <button
+                  mat-icon-button
+                  aria-label="Delete product"
+                  (click)="onRemove(i)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="product-quantity">
+            <button
+              mat-icon-button
+              aria-label="Decrease quantity of product"
+              (click)="onDec(i)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+            <!-- <input
+              class="quantity-input"
+              type="number"
+              [(ngModel)]="item.quantity"
+              (ngModelChange)="onInputQuantity(i, item.quantity)"
+            /> -->
+
+            <mat-form-field class="quantity-form-field">
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="item.quantity"
+                (ngModelChange)="onInputQuantity(i, item.quantity)"
+              />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              aria-label="Increase quantity of product"
+              (click)="onInc(i)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </td>
+
+        <td>
+          @if (saleService.isOnSale(item.product.id)) {
+            {{ item.product.price * 0.8 * item.quantity | currency: 'USD' }}
+          } @else {
+            {{ item.product.price * item.quantity | currency: 'USD' }}
+          }
+        </td>
+      </tr>
+    }
+    <tr class="remove-cart">
+      <td></td>
+      <td>
+        <small
+          >You have <span>{{ cartService.countItems() }}</span> products in your
+          cart</small
+        >
+      </td>
+      <td>
+        @if (cartService.countItems() != 0) {
+          <button mat-flat-button (click)="onClear()">
+            <mat-icon>delete_outline</mat-icon> Clear Cart
+          </button>
+        }
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Subtotal</td>
+      <td>{{ cartService.totalPrice() | currency }}</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>Discount code</td>
+      <td>
+        <mat-form-field class="discount-form-field">
+          <input
+            matInput
+            type="text"
+            placeholder="enter discount code"
+            [(ngModel)]="discountCode"
+            (input)="checkCode()"
+            (keyup.enter)="onDiscount()"
+          />
+          @if (discountCode) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="onClearCode()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+        </mat-form-field>
+        @if (showMessage) {
+          <small class="message">This discount code is invalid</small>
+        }
+        @if (showTotal) {
+          <small class="message"
+            >You saved {{ cartService.totalPrice() * 0.1 | currency }}</small
+          >
+        }
+      </td>
+    </tr>
+    @if (showTotal) {
+      <tr class="total-price-row">
+        <td>'</td>
+        <td>Total</td>
+        <td>{{ finalPrice | currency }}</td>
+      </tr>
+    }
+    <tr class="checkout">
+      <td></td>
+      <td></td>
+      <td>
+        <button mat-flat-button (click)="onOrder()">Checkout</button>
+      </td>
+    </tr>
+  </table>
+</div>

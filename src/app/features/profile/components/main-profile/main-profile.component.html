@@ -1,0 +1,30 @@
+<div class="profile-header">
+  <h1 class="title">My Profile</h1>
+  <mat-divider></mat-divider>
+</div>
+
+<div class="profile-container">
+  <div class="menu">
+    <li>
+      <a [routerLink]="[{ outlets: { profile: ['info'] } }]"
+        >Your Information</a
+      >
+    </li>
+    <mat-divider></mat-divider>
+    <li>
+      <a [routerLink]="[{ outlets: { profile: ['previous-orders'] } }]"
+        >Previous Orders</a
+      >
+    </li>
+    <mat-divider></mat-divider>
+    <li>
+      <button class="logout-btn" mat-menu-item (click)="onLogout()">
+        <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
+      </button>
+    </li>
+  </div>
+  <mat-divider class="vertical-divider"></mat-divider>
+  <div class="preview">
+    <router-outlet name="profile"></router-outlet>
+  </div>
+</div>
