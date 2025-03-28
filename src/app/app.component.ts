@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthState } from './core/auth/state/auth.reducers';
 import { refresh } from './core/auth/state/auth.actions';
+import { AuthState } from './core/auth/state/auth.reducers';
 
 @Component({
   selector: 'app-root',

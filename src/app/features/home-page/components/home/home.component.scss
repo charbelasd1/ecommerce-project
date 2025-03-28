@@ -4,23 +4,18 @@ section {
 }
 .home {
   padding: 80px 12% 10px;
-  height: auto;
-  // width: auto;
-
-  background-image: url(../../../../../assets/home-page-coverr.png);
-  background-color: #bde3f8;
+  height: 80vh;
+  
+  background-image: url('/assets/images/47.png');
+  background-color: #000;
   background-size: cover;
-
-  // background-repeat: no-repeat;
+  background-position: center;
+  
   position: relative;
   display: grid;
   grid-template-columns: 2fr 1fr;
   align-items: center;
   gap: 1.5rem;
-}
-
-span {
-  color: var(--accent-color);
 }
 
 .home-text {
@@ -29,10 +24,11 @@ span {
     color: var(--accent-color);
     font-size: var(--font-large);
     margin: 0;
+    margin-bottom: 1rem; /* Add space below */
     span {
       color: black;
       background-color: var(--primary-color);
-      font-size: var(--font-xxx-large);
+      font-size: var(--font-x-large); /* Reduced from xxx-large */
       padding: 0 1rem;
     }
   }
@@ -56,6 +52,19 @@ h2 {
   margin: 0;
   margin-bottom: 5%;
   font-size: var(--font-large);
+  
+  .highlight {
+    color: black;
+    background-color: var(--primary-color);
+    padding: 0 0.5rem;
+  }
+}
+
+#about-us {
+  span {
+    color: var(--accent-color);
+    font-weight: 500;
+  }
 }
 
 .about-container {
@@ -63,6 +72,14 @@ h2 {
   gap: 3rem;
   align-items: center;
   text-align: justify;
+  
+  div {
+    line-height: 1.6;
+    
+    span {
+      color: var(--accent-color); /* Ensure spans have the accent color */
+    }
+  }
 }
 
 @media (max-width: 760px) {

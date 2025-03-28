@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 export interface Tile {
   color: string;
@@ -35,7 +35,7 @@ export class CategoriesComponent {
       cols: 1,
       rows: 1.5,
       color: 'lightpink',
-      image: '../../../../../assets/jewelery.jpeg',
+      image: '../../../../../assets/jewl.JPG', // Changed from 'src/assets/jewl.JPG'
     },
     {
       text: `Women's Clothing`,

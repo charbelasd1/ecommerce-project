@@ -84,17 +84,17 @@ nav {
   }
 }
 
+.hidden-links-menu {
+  display: none; /* Hide by default on desktop */
+}
+
+/* Only show the hamburger menu on mobile */
 @media (max-width: 1000px) {
-  // nav {
-  //   grid-template-columns: 1fr 1fr;
-  // }
   .links {
-    display: none;
+    display: none; /* Hide regular links on mobile */
   }
+  
   .hidden-links-menu {
-    display: block;
-    a {
-      text-decoration: none !important;
-    }
+    display: block; /* Show hamburger menu on mobile */
   }
 }

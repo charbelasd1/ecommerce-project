@@ -1,7 +1,7 @@
 <mat-grid-list cols="4" rowHeight="100px" gutterSize="1rem">
   @for (tile of tiles; track tile) {
-    <mat-grid-tile
-      [colspan]="tile.cols"
+    <mat-grid-tile 
+      [colspan]="tile.cols" 
       [rowspan]="tile.rows"
       [ngStyle]="{
         'background-image': 'url(' + tile.image + ')',

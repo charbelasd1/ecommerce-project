@@ -1,33 +1,22 @@
 @import '../../../../../styles/buttons';
 
 .sale-poster {
-  // padding: 100px 5% 70px;
-  background-color: var(--background-color);
-  background-size: cover;
-
-  // background-image: url(../../../../../assets/Words-copy.jpeg);
-  // background-position: right;
-  // background-size: contain;
-  // background-repeat: no-repeat;
   background-color: #f5f1f2;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.img-container img {
-  width: 100%;
-  height: auto;
-}
-
 .poster-text {
-  padding-left: 10%;
-  h1,
-  h2,
-  h3 {
+  text-align: center;
+  padding: 1rem 10%;
+  margin-bottom: 2rem;
+  
+  h1, h2, h3 {
     margin: 0;
   }
+  
   h1 {
     font-size: var(--font-large);
     margin-top: 0.5rem;
@@ -40,11 +29,48 @@
   }
 }
 
+.images-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem; /* Reduced gap between images */
+  padding: 0 5%;
+}
+
+.img-container {
+  width: 45%;
+  max-width: 500px;
+  height: 350px; /* Fixed height for consistent sizing */
+  overflow: hidden; /* Prevents image overflow */
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes images cover the container */
+  }
+}
+
+/* For the right image that might have different proportions */
+.img-container.right img {
+  object-position: center; /* Centers the focus point of the image */
+}
+
 .see-all-btn {
   margin-top: 2rem;
   border-style: none;
   @include button-default(8rem, 3rem);
   font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .images-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .img-container {
+    width: 90%;
+  }
 }
 .sale-products {
   display: grid;
