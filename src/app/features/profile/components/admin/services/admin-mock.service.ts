@@ -13,7 +13,7 @@ export interface User {
 }
 
 export interface Order {
-  id: number;
+  id: string;
   date: string;
   customer: string;
   total: number;
@@ -34,11 +34,11 @@ export class AdminMockService {
   ];
 
   private mockOrders: Order[] = [
-    { id: 1001, date: '2024-02-20', customer: 'john@example.com', total: 159.99, status: 'completed', items: 2 },
-    { id: 1002, date: '2024-02-19', customer: 'sarah@example.com', total: 85.00, status: 'pending', items: 1 },
-    { id: 1003, date: '2024-02-18', customer: 'mike@example.com', total: 110.00, status: 'completed', items: 3 },
-    { id: 1004, date: '2024-02-17', customer: 'alex@example.com', total: 29.99, status: 'cancelled', items: 1 },
-    { id: 1005, date: '2024-02-16', customer: 'john@example.com', total: 165.00, status: 'completed', items: 2 }
+    { id: '1001', date: '2024-02-20', customer: 'john@example.com', total: 159.99, status: 'completed', items: 2 },
+    { id: '1002', date: '2024-02-19', customer: 'sarah@example.com', total: 85.00, status: 'pending', items: 1 },
+    { id: '1003', date: '2024-02-18', customer: 'mike@example.com', total: 110.00, status: 'completed', items: 3 },
+    { id: '1004', date: '2024-02-17', customer: 'alex@example.com', total: 29.99, status: 'cancelled', items: 1 },
+    { id: '1005', date: '2024-02-16', customer: 'john@example.com', total: 165.00, status: 'completed', items: 2 }
   ];
 
   constructor(private http: HttpClient) {}
