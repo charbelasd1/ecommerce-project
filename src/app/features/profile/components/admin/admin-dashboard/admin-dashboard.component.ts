@@ -1,10 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAuthService } from '../../../../../core/auth/services/user-login.service';
+import { AdminMockService } from '../services/admin-mock.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
   template: `
     <div class="admin-dashboard">
+      <h1 class="admin-title">Admin Features</h1>
+      
+      <div class="admin-nav">
+        <button mat-raised-button color="primary" routerLink="/profile/admin">
+          <mat-icon>dashboard</mat-icon> Dashboard
+        </button>
+        <button mat-raised-button color="primary" routerLink="/profile/admin/products">
+          <mat-icon>inventory_2</mat-icon> Manage Products
+        </button>
+        <button mat-raised-button color="primary" routerLink="/profile/admin/users">
+          <mat-icon>people</mat-icon> Manage Users
+        </button>
+      </div>
+      
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>Admin Dashboard</mat-card-title>
@@ -54,6 +70,15 @@ import { UserAuthService } from '../../../../../core/auth/services/user-login.se
     .admin-dashboard {
       padding: 20px;
     }
+    .admin-title {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .admin-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
     .dashboard-card {
       margin-bottom: 20px;
     }
@@ -97,12 +122,28 @@ export class AdminDashboardComponent implements OnInit {
     { date: '2024-02-18', action: 'Order Completed', user: 'mike@example.com' }
   ];
 
-  constructor(private authService: UserAuthService) {}
+  constructor(
+    private authService: UserAuthService,
+    private adminService: AdminMockService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // In a real application, these values would be fetched from a service
-    this.totalUsers = 150;
-    this.activeUsers = 42;
-    this.totalOrders = 287;
+    // Fetch data from our mock service
+    this.adminService.getTotalUsersCount().subscribe(count => {
+      this.totalUsers = count;
+    });
+    
+    this.adminService.getActiveUsersCount().subscribe(count => {
+      this.activeUsers = count;
+    });
+    
+    this.adminService.getTotalOrdersCount().subscribe(count => {
+      this.totalOrders = count;
+    });
+    
+    this.adminService.getRecentActivity().subscribe(activity => {
+      this.recentActivity = activity;
+    });
   }
 }
