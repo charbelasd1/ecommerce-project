@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { refresh } from './core/auth/state/auth.actions';
 import { AuthState } from './core/auth/state/auth.reducers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +10,19 @@ import { AuthState } from './core/auth/state/auth.reducers';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  constructor(private store: Store<AuthState>) {}
+  constructor(
+    private store: Store<AuthState>,
+    private router: Router
+  ) {}
+  
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user')!);
-
-    if (user) {
-      this.store.dispatch(
-        refresh({
-          email: user.email,
-          token: user.token,
-          userId: user.userId,
-        })
-      );
+    // Clear any existing authentication data
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    
+    // Redirect to login page if not already there
+    if (!this.router.url.includes('/login')) {
+      this.router.navigate(['/login']);
     }
   }
-  title = 'final-project';
 }

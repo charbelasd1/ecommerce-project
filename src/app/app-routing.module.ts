@@ -44,7 +44,12 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  { path: '', component: HomeComponent },
+  // Update the home route to include the auth guard
+  { 
+    path: '', 
+    component: HomeComponent,
+    canActivate: [authGuard]
+  },
 ];
 
 @NgModule({
