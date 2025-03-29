@@ -4,16 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: AdminDashboardComponent
-  }
-];
+import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +14,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    AdminRoutingModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
