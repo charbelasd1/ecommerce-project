@@ -6,17 +6,24 @@
 <div class="profile-container">
   <div class="menu">
     <li>
-      <a [routerLink]="[{ outlets: { profile: ['info'] } }]"
+      <a [routerLink]="['info']"
         >Your Information</a
       >
     </li>
     <mat-divider></mat-divider>
     <li>
-      <a [routerLink]="[{ outlets: { profile: ['previous-orders'] } }]"
+      <a [routerLink]="['previous-orders']"
         >Previous Orders</a
       >
     </li>
     <mat-divider></mat-divider>
+    <li *ngIf="isAdmin$ | async">
+      <a [routerLink]="['admin']">
+        <mat-icon>admin_panel_settings</mat-icon>
+        Admin Dashboard
+      </a>
+    </li>
+    <mat-divider *ngIf="isAdmin$ | async"></mat-divider>
     <li>
       <button class="logout-btn" mat-menu-item (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
@@ -25,6 +32,6 @@
   </div>
   <mat-divider class="vertical-divider"></mat-divider>
   <div class="preview">
-    <router-outlet name="profile"></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 </div>

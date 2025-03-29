@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainProfileComponent } from './components/main-profile/main-profile.component';
 import { PreviousOrdersComponent } from './components/previous-orders/previous-orders.component';
-import { PreviousOrderDetailsComponent } from './components/previous-order-details/previous-order-details.component';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
 const routes: Routes = [
@@ -11,18 +10,24 @@ const routes: Routes = [
     component: MainProfileComponent,
     children: [
       {
-        path: 'info',
-        component: ProfileInfoComponent,
-        outlet: 'profile',
+        path: '',
+        redirectTo: 'info',
+        pathMatch: 'full'
       },
-
+      {
+        path: 'info',
+        component: ProfileInfoComponent
+      },
       {
         path: 'previous-orders',
-        component: PreviousOrdersComponent,
-        outlet: 'profile',
+        component: PreviousOrdersComponent
       },
-    ],
-  },
+      {
+        path: 'admin',
+        loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({

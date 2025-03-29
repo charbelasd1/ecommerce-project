@@ -9,8 +9,8 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () =>
-      import('./features/profile/profile-routing.module').then(
-        (m) => m.ProfileRoutingModule
+      import('./features/profile/profile.module').then(
+        (m) => m.ProfileModule
       ),
   },
   {

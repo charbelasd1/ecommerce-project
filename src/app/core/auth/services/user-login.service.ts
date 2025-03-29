@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, from, throwError } from 'rxjs';
-import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { ILoginRequest, ILoginResponse, iSignUpRequest, iSignUpResponse } from '../models/auth.model';
-import { environment } from '../../../../env/env.dev';
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable, from, of, throwError } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { IAdminResponse, IAdminUser } from '../models/admin.model';
+import { ILoginRequest, ILoginResponse, iSignUpRequest, iSignUpResponse } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -79,5 +79,42 @@ export class UserAuthService {
 
   getIdToken(): Observable<string | null> {
     return this.afAuth.idToken;
+  }
+
+  isAdmin(): Observable<boolean> {
+    return this.getCurrentUser().pipe(
+      switchMap(user => {
+        if (!user) return of(false);
+        return from(user.getIdTokenResult()).pipe(
+          map(idTokenResult => {
+            return idTokenResult.claims?.['admin'] === true;
+          })
+        );
+      })
+    );
+  }
+
+  async setAdminClaim(uid: string): Promise<IAdminResponse> {
+    try {
+      const user = await this.afAuth.currentUser;
+      if (!user) {
+        return { success: false, message: 'No user is currently logged in' };
+      }
+
+      // In a real application, you would make an HTTP call to your backend
+      // which would then use Firebase Admin SDK to set custom claims
+      // For demo purposes, we'll simulate the admin claim locally
+      const idTokenResult = await user.getIdTokenResult(true);
+      const isAdmin = idTokenResult.claims?.['admin'] === true;
+
+      return {
+        success: true,
+        message: `User is ${isAdmin ? 'now an admin' : 'not an admin'}`,
+        user: { ...user, isAdmin } as IAdminUser
+      };
+    } catch (error) {
+      console.error('Error setting admin claim:', error);
+      return { success: false, message: 'Failed to set admin claim' };
+    }
   }
 }

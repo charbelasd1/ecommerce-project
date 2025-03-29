@@ -69,7 +69,7 @@
         @if (isLoggedIn$ | async) {
           <button
             mat-menu-item
-            [routerLink]="['/profile', { outlets: { profile: ['info'] } }]"
+            routerLink="/profile"
           >
             <mat-icon>perm_identity</mat-icon>
             <span>Profile</span>
