@@ -38,6 +38,8 @@
 }
 .form-control button {
   @include button-default(100%, 2rem);
+  background-color: black;  
+  color: white;   
   border: none;
   border-radius: 0;
 }

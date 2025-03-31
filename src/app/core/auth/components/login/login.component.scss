@@ -48,6 +48,8 @@
 .form-control button {
   @include button-default(100%, 2rem);
   border: none;
+  background-color: black;  
+  color: white;           
 }
 .message-container {
   width: 300px;

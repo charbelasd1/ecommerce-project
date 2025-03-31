@@ -15,7 +15,7 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
   &:hover {
-    background-color: var(--btn-hover-color);
+    background-color: rgb(255, 123, 0);
     transform: translateY(-1px);
     box-shadow: 0 4px 10px var(--drop-shadow-color);
   }
