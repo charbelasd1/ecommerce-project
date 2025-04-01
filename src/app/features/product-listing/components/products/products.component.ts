@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/products.model';
-import { ProductsApiService } from '../../services/products-api.service';
-import { CategoriesService } from '../../services/categories.service';
-import { SortService } from '../../services/sort.service';
-import { forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { Product } from '../../models/products.model';
+import { CategoriesService } from '../../services/categories.service';
 import { NewProductsService } from '../../services/new-products.service';
+import { ProductsApiService } from '../../services/products-api.service';
+import { SortService } from '../../services/sort.service';
 
 @Component({
   selector: 'app-products',
@@ -58,7 +58,7 @@ export class ProductsComponent implements OnInit {
   displayCategories() {
     this.cat.getAllCategories().subscribe({
       next: (categories: string[]) => {
-        const newCategory = 'skincare';
+        const newCategory = 'Trendy';
         this.categories = ['All', ...categories, newCategory];
       },
       error: (err: any) => {
@@ -76,9 +76,9 @@ export class ProductsComponent implements OnInit {
         );
       }
       this.sortService.sort(this.currentSort, this.productList);
-
       this.searchlist = [...this.originalProductList];
-    } else if (value === 'skincare') {
+    } 
+    else if (value === 'skincare') {
       this.aiah.getAiah().subscribe((products: Product[]) => {
         this.productList = products.filter((product) =>
           product.title.toLowerCase().includes(this.searchValue.toLowerCase())
@@ -86,7 +86,18 @@ export class ProductsComponent implements OnInit {
         this.sortService.sort(this.currentSort, this.productList);
         this.searchlist = [...products];
       });
-    } else {
+    }
+    else if (value === 'Trendy') {
+      this.http.get<Product[]>('/assets/mock.data.json').subscribe((trendyProducts: Product[]) => {
+        this.productList = trendyProducts.filter((product) =>
+          product.title.toLowerCase().includes(this.searchValue.toLowerCase())
+        );
+        this.sortService.sort(this.currentSort, this.productList);
+        this.searchlist = [...trendyProducts];
+        this.currentCategory = value;
+      });
+    }
+    else {
       let productsByCategory: Product[];
       this.cat.getProductsByCategory(value).subscribe((res: Product[]) => {
         productsByCategory = res;
@@ -95,7 +106,6 @@ export class ProductsComponent implements OnInit {
         );
         this.sortService.sort(this.currentSort, this.productList);
         this.searchlist = [...productsByCategory];
-
         this.currentCategory = value;
       });
     }
