@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private productsService: ProductsApiService,
     private cartService: CartService,
-    private aiah: NewProductsService,
+    private charbel: NewProductsService,
     public saleService: SaleService,
     private categoryService: CategoriesService,
     private router: Router
@@ -47,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
 
   getSimilar() {
     if (this.id > 20) {
-      this.getAiahProduct();
+      this.getCharbelProduct();
     } else {
       this.similarProducts$ = this.productsService.getProductById(this.id).pipe(
         tap((product) => {
@@ -66,16 +66,15 @@ export class ProductDetailsComponent implements OnInit {
       );
     }
   }
-  getAiahProduct() {
-    this.aiah.getAiahById(Number(this.id)).subscribe({
+  getCharbelProduct() {
+    this.charbel.getCharbelById(Number(this.id)).subscribe({
       next: (product) => {
         if (product) {
           this.product = product;
           this.getRating(this.product.rating.rate);
-          // console.log('Found product:', product);
 
-          this.similarProducts$ = this.aiah
-            .getAiah()
+          this.similarProducts$ = this.charbel
+            .getCharbel()
             .pipe(
               map((products) =>
                 products.filter((p) => p.id !== this.product.id)

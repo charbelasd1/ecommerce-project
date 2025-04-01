@@ -59,7 +59,7 @@ export class PreviousOrderDetailsComponent implements OnChanges {
     public profile: ProfileService,
     public productService: ProductsApiService,
     public saleService: SaleService,
-    private aiah: NewProductsService
+    private charbel: NewProductsService
   ) {}
 
   // got {product: id, quantity}
@@ -82,7 +82,7 @@ export class PreviousOrderDetailsComponent implements OnChanges {
     const productObservables = itemList.map((item) => {
       const productObservable =
         item.productId > 20
-          ? this.aiah.getAiahById(item.productId)
+          ? this.charbel.getCharbelById(item.productId)
           : this.productService.getProductById(item.productId);
 
       return productObservable.pipe(

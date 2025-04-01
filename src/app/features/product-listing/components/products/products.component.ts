@@ -34,14 +34,14 @@ export class ProductsComponent implements OnInit {
     private cat: CategoriesService,
     private sortService: SortService,
     private http: HttpClient,
-    private aiah: NewProductsService
-  ) {}
+    private charbel: NewProductsService  // remove duplicate injection
+) {}
 
   ngOnInit(): void {
     this.displayCategories();
     forkJoin([
       this.productsService.getAllProducts(),
-      this.aiah.getAiah(),
+      this.charbel.getCharbel(),
     ]).subscribe({
       next: ([apiProducts, mockProducts]: [Product[], Product[]]) => {
         this.originalProductList = [...apiProducts, ...mockProducts];
@@ -79,7 +79,16 @@ export class ProductsComponent implements OnInit {
       this.searchlist = [...this.originalProductList];
     } 
     else if (value === 'skincare') {
-      this.aiah.getAiah().subscribe((products: Product[]) => {
+        this.charbel.getCharbel().subscribe((products: Product[]) => {  // changed from aiah.getAiah
+            this.productList = products.filter((product) =>
+                product.title.toLowerCase().includes(this.searchValue.toLowerCase())
+            );
+            this.sortService.sort(this.currentSort, this.productList);
+            this.searchlist = [...products];
+        });
+    }
+    else if (value === 'trendyfash') {
+      this.charbel.getCharbel().subscribe((products: Product[]) => {
         this.productList = products.filter((product) =>
           product.title.toLowerCase().includes(this.searchValue.toLowerCase())
         );

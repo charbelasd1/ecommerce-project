@@ -9,12 +9,12 @@ import { Product } from '../models/products.model';
 })
 export class NewProductsService {
   constructor(private http: HttpClient) {}
-  getAiah(): Observable<Product[]> {
+  getCharbel(): Observable<Product[]> {
     return this.http.get<Product[]>('assets/mock.data.json');
   }
 
-  getAiahById(id: number): Observable<Product | undefined> {
-    return this.getAiah().pipe(
+  getCharbelById(id: number): Observable<Product | undefined> {
+    return this.getCharbel().pipe(
       map((products) => products.find((product) => product.id === id))
     );
   }

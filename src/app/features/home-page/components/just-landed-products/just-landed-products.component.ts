@@ -10,8 +10,9 @@ import { NewProductsService } from '../../../product-listing/services/new-produc
 })
 export class JustLandedProductsComponent {
   newItems!: Product[];
-  constructor(private aiah: NewProductsService) {
-    this.aiah.getAiah().subscribe((products: Product[]) => {
+  
+  constructor(private charbel: NewProductsService) {
+    this.charbel.getCharbel().subscribe((products: Product[]) => {
       this.newItems = products;
     });
   }
