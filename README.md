@@ -1,57 +1,65 @@
 # Charbel-Ecomm
 
-An e-commerce website built with **Angular Framework**, **Fake Store API**, and local data.
+An e-commerce website built with **Angular Framework**, **Fake Store API**, and **Firebase Authentication**.
 
-## Technologies Used
+## Features
 
-- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
-- **Fake Store API**: https://fakestoreapi.com/docs
-- **Firebase For Auth**
+### 🛍️ Product Features
+- Products listing with pagination
+- Filter and sort product list by category/price
+- Search functionality across all products
+- Single product view with similar items recommendation
+- Special "Sale" section for discounted items
 
-## User Features
+### 🛒 Cart Functionality
+- Add/remove items from cart
+- Adjust item quantities
+- Apply discount codes
+- Secure checkout process
 
-### Products
-- Products listing
-- Filter and sort product list
-- Search through products
-- Single product view (displays similar items)
-- View products on Sale (can be also viewed in the "Sale" tab)
+### 👤 User Management
+- Firebase authentication (login/register)
+- User profile dashboard
+- Order history tracking
+- Account settings
 
-### Cart
-- Add items to cart
-- Update cart
-- Delete cart
-- Increase/Decrease cart item quantity
-- Remove cart item
-- Use discount code at checkout
+## 🚀 Getting Started
 
-### User Profile
-- View user details
-- View previous orders
+### Prerequisites
+- Node.js (v18+ recommended)
+- Angular CLI (v17+)
+- Docker (optional, for containerized deployment)
 
-## Steps to Run the Project
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/charbelasd1/ecomm-proj.git
+cd ecomm-proj
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/charbelasd1/ecomm-proj.git
-   ```
-2. **Navigate to the project directory and install Angular CLI**:
+# Install dependencies
+npm install
 
-   ```bash
-   cd diretory-name
-   npm install -g @angular/cli
-   ```
+# Install Angular CLI globally (if not already installed)
+npm install -g @angular/cli
+```
+### Running the Project
+```bash
+# Start the development server
+ng serve
+```
+### 🧪 Testing
+```bash
+# Run unit tests
+ng test
+# Run tests in watch mode
+ng test --watch
 
-3. **Install project dependencies**:
+# Run tests in CI mode (single run)
+ng test --watch=false --browsers=ChromeHeadless
 
-   ```bash
-   npm install
-   ```
+# Run tests via Docker
+docker-compose run test
+```
+### Further help
 
-4. **Start the development server**:
-
-   ```bash
-   ng serve
-   ```
-
-5. Open `http://localhost:4200/` in your browser.
+To get more help on the Angular CLI use ng help or go check out the Angular CLI Overview and Command Reference page.
