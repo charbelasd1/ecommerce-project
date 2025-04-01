@@ -350,10 +350,10 @@ export class AdminDashboardComponent implements OnInit {
   recentOrders: Order[] = [];
   
   inventoryItems = [
-    { name: 'Smartphone X', stock: 45, capacity: 100, category: 'Electronics' },
-    { name: 'Designer Watch', stock: 12, capacity: 50, category: 'Accessories' },
-    { name: 'Premium Headphones', stock: 8, capacity: 30, category: 'Electronics' },
-    { name: 'Leather Wallet', stock: 23, capacity: 40, category: 'Accessories' }
+    { name: 'SSD', stock: 45, capacity: 100, category: 'Electronics' },
+    { name: 'Gaming drive', stock: 12, capacity: 50, category: 'Electronicsß' },
+    { name: 'Ring', stock: 8, capacity: 30, category: 'Accesories' },
+    { name: 'Shirt', stock: 23, capacity: 40, category: 'Accessories' }
   ];
 
   constructor(

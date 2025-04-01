@@ -43,7 +43,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/4ever-teen-logo.png",
               "src/assets",
               {
                 "glob": "**/*",
@@ -102,7 +102,7 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/assets/4ever-teen-logo.png", "src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": []
           }

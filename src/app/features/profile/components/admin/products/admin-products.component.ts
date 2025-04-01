@@ -79,8 +79,8 @@ import { MatTableModule } from '@angular/material/table';
 export class AdminProductsComponent {
   displayedColumns: string[] = ['name', 'price', 'stock', 'actions'];
   products = [
-    { name: 'Sample Product 1', price: 99.99, stock: 50 },
-    { name: 'Sample Product 2', price: 149.99, stock: 30 },
-    { name: 'Sample Product 3', price: 199.99, stock: 20 }
+    { name: 'Bomber Jacket', price: 99.99, stock: 50 },
+    { name: 'Leather Jacket', price: 149.99, stock: 30 },
+    { name: 'Baggy jeans', price: 199.99, stock: 20 }
   ];
 }
