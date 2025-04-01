@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { userEmail, authError } from '../../../../core/auth/state/auth.selector';
 import { AuthState } from '../../../../core/auth/state/auth.reducers';
+import { authError, userEmail } from '../../../../core/auth/state/auth.selector';
+import { IUserProfile, ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -14,13 +14,15 @@ export class ProfileInfoComponent implements OnInit {
   currentUser!: number;
   userName!: string;
   emailError: string | null = null;
-
-  // email$!: Observable<string | undefined>;
   email!: string | undefined;
+  profileData: IUserProfile | null = null;
+  showEditForm = false; // New property to toggle edit form visibility
 
   constructor(
     private profile: ProfileService,
-    private store: Store<AuthState>
+    private store: Store<AuthState>,
+    public router: Router,
+    public route: ActivatedRoute
   ) {}
   
   ngOnInit(): void {
@@ -40,15 +42,23 @@ export class ProfileInfoComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching email:', error);
-      },
+      }
     });
     
+    // Load profile data
+    this.profileData = this.profile.getProfileData();
+    
     // Subscribe to auth errors
-    this.store.pipe(select(authError)).subscribe(error => {
-      if (error && error.includes('email-already-in-use')) {
-        this.emailError = 'This email is already in use. Please use a different email.';
-      } else {
-        this.emailError = null;
+    this.store.pipe(select(authError)).subscribe({
+      next: (error) => {
+        if (error && error.includes('email-already-in-use')) {
+          this.emailError = 'This email is already in use. Please use a different email.';
+        } else {
+          this.emailError = null;
+        }
+      },
+      error: (err) => {
+        console.error('Error handling auth error:', err);
       }
     });
   }
@@ -65,5 +75,21 @@ export class ProfileInfoComponent implements OnInit {
     
     // Capitalize first letter
     return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+  }
+
+  // Toggle edit form visibility
+  toggleEditForm(): void {
+    this.showEditForm = !this.showEditForm;
+  }
+
+  // Handle profile update event from edit component
+  onProfileUpdated(updatedProfile: IUserProfile): void {
+    this.profileData = updatedProfile;
+    this.showEditForm = false; // Hide edit form after update
+  }
+
+  // Handle cancel event from edit component
+  onEditCancelled(): void {
+    this.showEditForm = false;
   }
 }

@@ -1,11 +1,35 @@
-<h2>
-  Welcome back, <span> {{ userName }}</span>
-</h2>
-<div class="info-container">
-  <p>
-    Your email: <span>{{ email }}</span>
-  </p>
-  <div *ngIf="emailError" class="error-message">
-    {{ emailError }}
+<div class="profile-info" *ngIf="!showEditForm">
+  <h2>
+    Welcome back, <span>{{ userName }}</span>
+  </h2>
+  <div class="info-container">
+    <div class="info-section">
+      <h3>Contact Information</h3>
+      <p>
+        <strong>Email:</strong> <span>{{ email }}</span>
+      </p>
+      <div *ngIf="emailError" class="error-message">
+        {{ emailError }}
+      </div>
+    </div>
+
+    <div class="info-section" *ngIf="profileData">
+      <h3>Personal Information</h3>
+      <p><strong>Name:</strong> {{ profileData.firstName }} {{ profileData.lastName }}</p>
+      <p><strong>Address:</strong> {{ profileData.address }}</p>
+      <p><strong>City:</strong> {{ profileData.city }}</p>
+      <p><strong>State:</strong> {{ profileData.state }}</p>
+      <p><strong>ZIP Code:</strong> {{ profileData.zipCode }}</p>
+    </div>
+
+    <div class="actions">
+      <button (click)="toggleEditForm()" class="edit-button">Edit Profile</button>
+    </div>
   </div>
 </div>
+
+<!-- Edit form component -->
+<app-profile-edit *ngIf="showEditForm" 
+  (profileUpdated)="onProfileUpdated($event)" 
+  (editCancelled)="onEditCancelled()">
+</app-profile-edit>

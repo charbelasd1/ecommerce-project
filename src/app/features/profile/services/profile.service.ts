@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
-
 import { IUserCartLog } from '../../cart/models/userCartLog.model';
+
+export interface IUserProfile {
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +31,16 @@ export class ProfileService {
       alert(`You do not have any previous orders!`);
       return [];
     }
+  }
+
+  getProfileData(): IUserProfile | null {
+    const userId = this.getCurrentUser();
+    const profileData = localStorage.getItem(`user#${userId}_profile`);
+    return profileData ? JSON.parse(profileData) : null;
+  }
+
+  updateProfile(profileData: IUserProfile): void {
+    const userId = this.getCurrentUser();
+    localStorage.setItem(`user#${userId}_profile`, JSON.stringify(profileData));
   }
 }
