@@ -27,3 +27,13 @@ export const currentUser = createSelector(
   selectAuthState,
   (auth) => auth.userId
 );
+
+export const authError = createSelector(
+  selectAuthState,
+  (state) => state.error
+);
+
+export const getValidationErrors = createSelector(
+  selectAuthState,
+  (state) => state.validationErrors
+);

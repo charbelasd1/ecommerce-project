@@ -11,10 +11,10 @@
         required
       />
       <div>
-        @if (firstName?.invalid && (firstName?.touched || firstName?.dirty)) {
+        @if ((firstName?.invalid && (firstName?.touched || firstName?.dirty)) || showValidationErrors) {
           <span class="error-message">
-            @if (firstName?.errors?.['required']) {
-              First name is required
+            @if (firstName?.errors?.['required'] || validationErrors?.firstName) {
+              {{ validationErrors?.firstName || 'First name is required' }}
             }
           </span>
         }
@@ -31,10 +31,12 @@
         required
       />
       <div>
-        @if (lastName?.invalid && (lastName?.touched || lastName?.dirty)) {
-          <span class="error-message" *ngIf="lastName?.errors?.['required']"
-            >Last name is required</span
-          >
+        @if ((lastName?.invalid && (lastName?.touched || lastName?.dirty)) || showValidationErrors) {
+          <span class="error-message">
+            @if (lastName?.errors?.['required'] || validationErrors?.lastName) {
+              {{ validationErrors?.lastName || 'Last name is required' }}
+            }
+          </span>
         }
       </div>
     </div>
@@ -59,6 +61,11 @@
             @if (email?.errors?.['email']) {
               Please use a valid email
             }
+          </span>
+        }
+        @if (emailExistsError) {
+          <span class="error-message">
+            {{ emailExistsError }}
           </span>
         }
       </div>
