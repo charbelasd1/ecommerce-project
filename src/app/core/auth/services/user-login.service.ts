@@ -1,3 +1,6 @@
+// Core authentication service that handles user login, signup, and admin verification
+// Integrates with Firebase Authentication for secure user management
+// Provides methods for user authentication, token management, and admin access control
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';

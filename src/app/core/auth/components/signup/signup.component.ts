@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Signup Component
+ * Manages new user registration with comprehensive form validation
+ * and Firebase integration.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,11 +19,30 @@ import { getValidationErrors } from '../../state/auth.selector';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
+/**
+ * SignupComponent handles new user registration
+ * Features:
+ * - Form validation with custom password requirements
+ * - Real-time validation feedback
+ * - Firebase authentication integration
+ * - NgRx state management for errors
+ */
 export class SignupComponent implements OnInit {
+  /** Reactive form for user registration */
   signupForm!: FormGroup;
+  /** Regular expression for password validation
+   * Requires:
+   * - At least one uppercase letter
+   * - At least one lowercase letter
+   * - At least one number
+   * - Minimum length of 8 characters
+   */
   StrongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
+  /** Tracks email existence error */
   emailExistsError: string | null = null;
+  /** Stores form validation errors */
   validationErrors: any;
+  /** Controls display of validation messages */
   showValidationErrors = false;
 
   constructor(
@@ -27,24 +52,31 @@ export class SignupComponent implements OnInit {
     private store: Store<AuthState>
   ) {}
 
-  // Add getters for form controls
+  /** Form control getter for first name field */
   get firstName() {
     return this.signupForm.get('firstName');
   }
 
+  /** Form control getter for last name field */
   get lastName() {
     return this.signupForm.get('lastName');
   }
 
+  /** Form control getter for email field */
   get email() {
     return this.signupForm.get('email');
   }
 
+  /** Form control getter for password field */
   get password() {
     return this.signupForm.get('password');
   }
 
-  // Add to your component class
+  /**
+   * Initializes the signup form and validation
+   * Sets up form controls with validators
+   * Subscribes to validation error state
+   */
   ngOnInit() {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.required]],
@@ -64,6 +96,11 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles form submission
+   * Validates form data and attempts user registration
+   * Dispatches appropriate actions based on validation results
+   */
   onSubmit() {
     this.showValidationErrors = true;
     

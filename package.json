@@ -23,6 +23,8 @@
     "@angular/router": "^17.3.0",
     "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",
+    "ag-grid-angular": "^33.2.1",
+    "ag-grid-community": "^33.2.1",
     "bootstrap": "^5.3.3",
     "firebase": "^10.8.0",
     "jwt-decode": "^4.0.0",
